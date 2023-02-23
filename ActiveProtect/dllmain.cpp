@@ -2,25 +2,34 @@
 #include "pch.h"
 #include <thread>
 #include <chrono> 
-#include "dll_scanner.h"
+#include "modules_scanner.h"
 #include "debuggin.h"
 
 
-
-void run() {
+DWORD WINAPI run(HMODULE hModule) {
     MessageBox(NULL, TEXT("This game is protected by Active Protect"),TEXT("Active Protect"), MB_OK);
-    allocateDebugConsole();
+    allocateDebugConsole();//TODO : remove for final release
 
-    while (true) {
+    initializeModuleScanner();
+
+    bool suspiciousActivity = false;
+    while (!suspiciousActivity) {
         std::cout << "Active protect is scanning the game" << std::endl;
 
-        detectUnAllowedDll();
+        BOOL unauthorizedModulePresent = isUnauthorizedModulePresent();
 
-       
+        if (unauthorizedModulePresent) {
+            MessageBox(NULL, TEXT("Active Protect : unauthorized module found in the game. Quitting."), TEXT("Active Protect"), MB_OK);
+            exit(0);
+        }
 
         std::this_thread::sleep_for(std::chrono::seconds(1));
     }
 
+
+    FreeLibraryAndExitThread(hModule, 0);
+    CloseHandle(hModule);
+    return 0;
 }
 
 BOOL APIENTRY DllMain( HMODULE hModule,
@@ -30,14 +39,19 @@ BOOL APIENTRY DllMain( HMODULE hModule,
 {
     switch (ul_reason_for_call)
     {
-    case DLL_PROCESS_ATTACH:
-        DisableThreadLibraryCalls(hModule);
-        CreateThread(NULL, 0, (LPTHREAD_START_ROUTINE)run, NULL, 0, NULL);
-    case DLL_THREAD_ATTACH:
+        case DLL_PROCESS_ATTACH:
+        {
+            DisableThreadLibraryCalls(hModule);
+            HANDLE thread = CreateThread(NULL, 0, (LPTHREAD_START_ROUTINE)run, NULL, 0, NULL);
+            if (thread) {
+                CloseHandle(thread);
+            }
+        }  
+        case DLL_THREAD_ATTACH:
 
-    case DLL_THREAD_DETACH:
-    case DLL_PROCESS_DETACH:
-        break;
+        case DLL_THREAD_DETACH:
+        case DLL_PROCESS_DETACH:
+            break;
     }
     return TRUE;
 }

@@ -21,10 +21,13 @@
     <ClInclude Include="pch.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="dll_scanner.h">
+    <ClInclude Include="modules_scanner.h">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="debuggin.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="anti_debug.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>
@@ -35,10 +38,13 @@
     <ClCompile Include="pch.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="dll_scanner.cpp">
+    <ClCompile Include="modules_scanner.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="debugging.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="anti_debug.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>
