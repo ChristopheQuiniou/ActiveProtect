@@ -14,7 +14,7 @@ void initializeForbiddenWords() {
 		L"aimbot",
 		L"wallhack",
 		L"hack",
-		L"injector",
+		//L"injector",
 		L"ida",
 		L"reclass",
 		L"x64dbg",
