@@ -7,6 +7,8 @@ DWORD processID;
 
 void initializeModuleScanner() {
     authorizedModules = {
+    L"ActiveProtect.DLL",
+    L"AppXDeploymentClient.dll",
     L"ac_client.exe",
     L"ntdll.dll",
     L"KERNEL32.DLL",
@@ -100,8 +102,10 @@ void initializeModuleScanner() {
     L"wshbth.dll",
     L"nlansp_c.dll",
     L"fwpuclnt.dll",
-    L"rasadhlp.dll"
-    
+    L"rasadhlp.dll",
+    L"VCRUNTIME140D.dll",
+    L"MSVCP140D.dll",
+    L"ucrtbased.dll"
     };
 
     processID = GetCurrentProcessId();

@@ -9,29 +9,39 @@
 
 DWORD WINAPI run(HMODULE hModule) {
     //MessageBox(NULL, TEXT("This game is protected by Active Protect"),TEXT("Active Protect"), MB_OK);
+#ifdef _DEBUG
     allocateDebugConsole();//TODO : remove for final release
+#endif
 
     initializeModuleScanner();
     initializeForbiddenWords();
 
     bool suspiciousActivity = false;
     while (!suspiciousActivity) {
+#ifdef _DEBUG
         std::cout << "Active protect is scanning the game" << std::endl;
+#endif
 
         if (isUnauthorizedModulePresent()) {
+#ifdef _DEBUG
             MessageBox(NULL, TEXT("Active Protect : unauthorized module found in the game. Quitting."), TEXT("Active Protect"), MB_OK);
+#endif
             exit(0);
         }
 
         if (IsDebuggerPresent()) {
+#ifdef _DEBUG
             MessageBox(NULL, TEXT("Active Protect : a debugger was found on the game. Quitting."), TEXT("Active Protect"), MB_OK);
+#endif
             exit(0);
         }
 
-        if (isHackingProcessPresent()) {
-            MessageBox(NULL, TEXT("Active Protect : unauthorized process is currently running. Quitting."), TEXT("Active Protect"), MB_OK);
-            exit(0);
-        }
+        //if (isHackingProcessPresent()) {
+#ifdef _DEBUG
+         //   MessageBox(NULL, TEXT("Active Protect : unauthorized process is currently running. Quitting."), TEXT("Active Protect"), MB_OK);
+#endif
+        //    exit(0);
+        //}
 
         std::this_thread::sleep_for(std::chrono::seconds(1));
     }
