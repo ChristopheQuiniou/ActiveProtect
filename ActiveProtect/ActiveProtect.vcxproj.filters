@@ -30,6 +30,9 @@
     <ClInclude Include="anti_debug.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="hacking_process_scanner.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="dllmain.cpp">
@@ -45,6 +48,9 @@
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="anti_debug.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="hacking_process_scanner.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>

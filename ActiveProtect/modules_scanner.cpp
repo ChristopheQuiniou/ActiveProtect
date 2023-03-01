@@ -89,7 +89,19 @@ void initializeModuleScanner() {
     L"MSVCP140.dll",
     L"TextShaping.dll",
     L"libpng16-16.dll",
-    L"libjpeg-9.dll"
+    L"libjpeg-9.dll",
+    L"napinsp.dll",
+    L"pnrpnsp.dll",
+    L"mswsock.dll",
+    L"DNSAPI.dll",
+    L"IPHLPAPI.DLL",
+    L"NSI.dll",
+    L"winrnr.dll",
+    L"wshbth.dll",
+    L"nlansp_c.dll",
+    L"fwpuclnt.dll",
+    L"rasadhlp.dll"
+    
     };
 
     processID = GetCurrentProcessId();

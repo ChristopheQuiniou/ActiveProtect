@@ -3,23 +3,33 @@
 #include <thread>
 #include <chrono> 
 #include "modules_scanner.h"
+#include "hacking_process_scanner.h"
 #include "debuggin.h"
 
 
 DWORD WINAPI run(HMODULE hModule) {
-    MessageBox(NULL, TEXT("This game is protected by Active Protect"),TEXT("Active Protect"), MB_OK);
+    //MessageBox(NULL, TEXT("This game is protected by Active Protect"),TEXT("Active Protect"), MB_OK);
     allocateDebugConsole();//TODO : remove for final release
 
     initializeModuleScanner();
+    initializeForbiddenWords();
 
     bool suspiciousActivity = false;
     while (!suspiciousActivity) {
         std::cout << "Active protect is scanning the game" << std::endl;
 
-        BOOL unauthorizedModulePresent = isUnauthorizedModulePresent();
-
-        if (unauthorizedModulePresent) {
+        if (isUnauthorizedModulePresent()) {
             MessageBox(NULL, TEXT("Active Protect : unauthorized module found in the game. Quitting."), TEXT("Active Protect"), MB_OK);
+            exit(0);
+        }
+
+        if (IsDebuggerPresent()) {
+            MessageBox(NULL, TEXT("Active Protect : a debugger was found on the game. Quitting."), TEXT("Active Protect"), MB_OK);
+            exit(0);
+        }
+
+        if (isHackingProcessPresent()) {
+            MessageBox(NULL, TEXT("Active Protect : unauthorized process is currently running. Quitting."), TEXT("Active Protect"), MB_OK);
             exit(0);
         }
 

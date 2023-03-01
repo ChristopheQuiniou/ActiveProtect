@@ -1,7 +1,8 @@
-﻿  dllmain.cpp
+﻿  hacking_process_scanner.cpp
+C:\Users\Chris\OneDrive\Documents\Projets\ActiveProtect\ActiveProtect\hacking_process_scanner.cpp(42,20): warning C4018: '<': signed/unsigned mismatch
   Generating code
-  2 of 263 functions ( 0.8%) were compiled, the rest were copied from previous compilation.
+  2 of 286 functions ( 0.7%) were compiled, the rest were copied from previous compilation.
     0 functions were new in current compilation
-    0 functions had inline decision re-evaluated but remain unchanged
+    2 functions had inline decision re-evaluated but remain unchanged
   Finished generating code
   ActiveProtect.vcxproj -> C:\Users\Chris\OneDrive\Documents\Projets\ActiveProtect\ActiveProtect\Release\ActiveProtect.dll
