@@ -105,7 +105,8 @@ void initializeModuleScanner() {
     L"rasadhlp.dll",
     L"VCRUNTIME140D.dll",
     L"MSVCP140D.dll",
-    L"ucrtbased.dll"
+    L"ucrtbased.dll",
+    L"apphelp.dll"
     };
 
     processID = GetCurrentProcessId();

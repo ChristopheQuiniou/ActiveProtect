@@ -18,6 +18,7 @@ void initializeForbiddenWords() {
 		L"ida",
 		L"reclass",
 		L"x64dbg",
+		L"x32dbg",
 		L"x86dbg"
 	};
 }
